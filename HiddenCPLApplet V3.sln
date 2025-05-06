@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.35706.149
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiddenCPLApplet V3", "HiddenCPLApplet V3\HiddenCPLApplet V3.csproj", "{7068A8EF-1908-45F1-A3F5-34CDE957A59C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7068A8EF-1908-45F1-A3F5-34CDE957A59C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7068A8EF-1908-45F1-A3F5-34CDE957A59C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7068A8EF-1908-45F1-A3F5-34CDE957A59C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7068A8EF-1908-45F1-A3F5-34CDE957A59C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC4139C0-B637-4C95-987C-771A5AC1A868}
+	EndGlobalSection
+EndGlobal

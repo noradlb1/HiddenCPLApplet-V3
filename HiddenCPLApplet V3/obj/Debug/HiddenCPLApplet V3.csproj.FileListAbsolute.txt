@@ -1,0 +1,26 @@
+C:\Users\MONSTERMC\source\repos\HiddenCPLApplet V3\HiddenCPLApplet V3\bin\Debug\HiddenCPLApplet V3.exe.config
+C:\Users\MONSTERMC\source\repos\HiddenCPLApplet V3\HiddenCPLApplet V3\bin\Debug\HiddenCPLApplet V3.exe
+C:\Users\MONSTERMC\source\repos\HiddenCPLApplet V3\HiddenCPLApplet V3\bin\Debug\HiddenCPLApplet V3.pdb
+C:\Users\MONSTERMC\source\repos\HiddenCPLApplet V3\HiddenCPLApplet V3\bin\Debug\Guna.UI2.dll
+C:\Users\MONSTERMC\source\repos\HiddenCPLApplet V3\HiddenCPLApplet V3\obj\Debug\HiddenCPLApplet V3.csproj.AssemblyReference.cache
+C:\Users\MONSTERMC\source\repos\HiddenCPLApplet V3\HiddenCPLApplet V3\obj\Debug\HiddenCPLApplet_V3.Properties.Resources.resources
+C:\Users\MONSTERMC\source\repos\HiddenCPLApplet V3\HiddenCPLApplet V3\obj\Debug\HiddenCPLApplet V3.csproj.GenerateResource.cache
+C:\Users\MONSTERMC\source\repos\HiddenCPLApplet V3\HiddenCPLApplet V3\obj\Debug\HiddenCPLApplet V3.csproj.CoreCompileInputs.cache
+C:\Users\MONSTERMC\source\repos\HiddenCPLApplet V3\HiddenCPLApplet V3\obj\Debug\HiddenCPLApplet V3.csproj.CopyComplete
+C:\Users\MONSTERMC\source\repos\HiddenCPLApplet V3\HiddenCPLApplet V3\obj\Debug\HiddenCPLApplet V3.exe
+C:\Users\MONSTERMC\source\repos\HiddenCPLApplet V3\HiddenCPLApplet V3\obj\Debug\HiddenCPLApplet V3.pdb
+C:\Users\MONSTERC DEFENDER\Desktop\sdgdsfdsfds\HiddenCPLApplet V3\obj\Debug\HiddenCPLApplet V3.csproj.AssemblyReference.cache
+C:\Users\MONSTERC DEFENDER\Desktop\sdgdsfdsfds\HiddenCPLApplet V3\obj\Debug\HiddenCPLApplet.Form1.resources
+C:\Users\MONSTERC DEFENDER\Desktop\sdgdsfdsfds\HiddenCPLApplet V3\obj\Debug\HiddenCPLApplet_V3.Properties.Resources.resources
+C:\Users\MONSTERC DEFENDER\Desktop\sdgdsfdsfds\HiddenCPLApplet V3\obj\Debug\HiddenCPLApplet V3.csproj.GenerateResource.cache
+C:\Users\MONSTERC DEFENDER\Desktop\sdgdsfdsfds\HiddenCPLApplet V3\obj\Debug\HiddenCPLApplet V3.csproj.CoreCompileInputs.cache
+C:\Users\MONSTERC DEFENDER\Desktop\sdgdsfdsfds\HiddenCPLApplet V3\obj\Debug\HiddenCPLApplet_V3.Form2.resources
+C:\Users\MONSTERC DEFENDER\Desktop\sdgdsfdsfds\HiddenCPLApplet V3\bin\Debug\HiddenCPLApplet V3.exe.config
+C:\Users\MONSTERC DEFENDER\Desktop\sdgdsfdsfds\HiddenCPLApplet V3\bin\Debug\HiddenCPLApplet V3.exe
+C:\Users\MONSTERC DEFENDER\Desktop\sdgdsfdsfds\HiddenCPLApplet V3\bin\Debug\HiddenCPLApplet V3.pdb
+C:\Users\MONSTERC DEFENDER\Desktop\sdgdsfdsfds\HiddenCPLApplet V3\bin\Debug\SimpleObfuscator.dll
+C:\Users\MONSTERC DEFENDER\Desktop\sdgdsfdsfds\HiddenCPLApplet V3\bin\Debug\System.CodeDom.dll
+C:\Users\MONSTERC DEFENDER\Desktop\sdgdsfdsfds\HiddenCPLApplet V3\bin\Debug\System.CodeDom.xml
+C:\Users\MONSTERC DEFENDER\Desktop\sdgdsfdsfds\HiddenCPLApplet V3\obj\Debug\HiddenCP.9C021A69.Up2Date
+C:\Users\MONSTERC DEFENDER\Desktop\sdgdsfdsfds\HiddenCPLApplet V3\obj\Debug\HiddenCPLApplet V3.exe
+C:\Users\MONSTERC DEFENDER\Desktop\sdgdsfdsfds\HiddenCPLApplet V3\obj\Debug\HiddenCPLApplet V3.pdb
